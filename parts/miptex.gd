@@ -15,7 +15,7 @@ var texture_name: String: # max 16 characters
 var mipmap_offsets: Array[int] = []
 var mipmaps: Array[MipMap] = [] # max 4, each mipmap is half size of the one before it
 
-static func from_file(file: FileAccess, entry: Entry, pos: int) -> MipTex:
+static func from_file(file: FileAccess, entry: Entry) -> MipTex:
 	var mt = MipTex.new()
 
 	mt.texture_name = file.get_buffer(16).get_string_from_ascii()

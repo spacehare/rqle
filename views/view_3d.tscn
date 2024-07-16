@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy4rv664fic7x"]
+
+[ext_resource type="Script" path="res://views/view_3d.gd" id="1_76r6r"]
+[ext_resource type="Script" path="res://views/camera.gd" id="1_s7t4j"]
+
+[sub_resource type="Sky" id="Sky_jvvrl"]
+
+[sub_resource type="Environment" id="Environment_yfap1"]
+background_mode = 1
+background_color = Color(0.914175, 0.725103, 0.863405, 1)
+sky = SubResource("Sky_jvvrl")
+ambient_light_source = 2
+ambient_light_color = Color(0.984984, 0.923425, 0.958029, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7fkyl"]
+radius = 0.2
+height = 0.4
+radial_segments = 8
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_76r6r")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yfap1")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("1_s7t4j")
+
+[node name="Gimbal" type="SpringArm3D" parent="Node3D"]
+unique_name_in_owner = true
+spring_length = 7.0
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/Gimbal"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, -3.8743e-07, 0, 1, 0, 3.8743e-07, 0, 1, 0, 0, 0)
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("SphereMesh_7fkyl")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.410302, -0.290177, -8.84309)

@@ -1,11 +1,17 @@
 extends Node
 class_name WAD
-
+ 
 var entries: Array[Entry] = []
 var textures: Array[MipTex] = []
 var id # aka "magic"
+@export_file('*.wad') var wad_file_path: String
 
-const HEADER_SIZE = 24
+func _ready():
+	if wad_file_path:
+		var w = WAD.from_wad_file(wad_file_path)
+		entries = w.entries
+		textures = w.textures
+		id = w.id
 
 static func from_wad_file(path) -> WAD:
 	var file = FileAccess.open(path, FileAccess.READ)
@@ -28,7 +34,7 @@ static func from_wad_file(path) -> WAD:
 		# texture data
 		file.seek(entry.offset)
 		# var tex = MipTex.new().from_lump(file.get_buffer(40))
-		var tex := MipTex.from_file(file, entry, orig_cursor + 32)
+		var tex := MipTex.from_file(file, entry)
 
 		new_wad.textures.append(tex)
 		file.seek(orig_cursor + 32)

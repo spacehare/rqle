@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://cprg62h81oi42"]
+
+[ext_resource type="Script" path="res://views/view_wads.gd" id="1_yew2p"]
+
+[node name="ViewWads" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 322.0
+grow_vertical = 2
+script = ExtResource("1_yew2p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+color = Color(0, 0.354757, 0.355058, 1)
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ButtonLoadWad" type="Button" parent="BoxContainer"]
+visible = false
+layout_mode = 2
+text = "button"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="MarginContainer" parent="BoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/ScrollContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical = true
+
+[node name="WadContainer" type="HFlowContainer" parent="BoxContainer/ScrollContainer/Control/BoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="BoxContainer/ScrollContainer/Control/BoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+placeholder_text = "Search"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer/ScrollContainer/Control/BoxContainer"]
+layout_mode = 2
+
+[node name="ButtonRegex" type="CheckButton" parent="BoxContainer/ScrollContainer/Control/BoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Regular Expressions"
+text = ".*"
+
+[node name="ButtonGroup" type="CheckButton" parent="BoxContainer/ScrollContainer/Control/BoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Regular Expressions"
+text = "Group"
